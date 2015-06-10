@@ -1,0 +1,7 @@
+To run system 
+
+RunHost
+
+then run 
+RunNode FOUR times 
+	each with a different IP address

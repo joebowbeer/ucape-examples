@@ -1,0 +1,29 @@
+package c23.MontecarloPi
+
+import groovyx.gpars.csp.ChannelInputList
+import groovyx.gpars.csp.ChannelOutputList
+
+import c23.loaderObjects.WorkerInterface
+
+class McPiCollector implements WorkerInterface {
+
+  def ChannelInputList inChannels
+  def ChannelOutputList outChannels
+  def workers = 1
+  def iterations = 192
+  def cores = 1
+
+  def connect(inChannels, outChannels){
+    this.inChannels = inChannels
+    this.outChannels = outChannels
+  }
+
+  void run(){
+    println "running McPiCollector"
+    def quadSum = 0
+    for (w in 0 ..< workers) quadSum = quadSum + inChannels[w].read()
+    def pi = quadSum / iterations * 4
+    println "The value of pi is $pi"
+    println "Workers: $workers, Iterations: $iterations, Cores : $cores"
+  }
+}
