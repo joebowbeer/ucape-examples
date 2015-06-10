@@ -1,0 +1,7 @@
+mainClassName = 'c24.Distributed.hostNodeProcesses.NodeProcess'
+
+//sourceSets.main.groovy {
+//  setSrcDirs rootProject.sourceSets.main.groovy.srcDirs
+//  include '**/c24/Distributed/hostNodeProcesses/'
+//  include '**/c24/Distributed/loaderObjects/'
+//}

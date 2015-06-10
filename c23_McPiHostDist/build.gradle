@@ -1,0 +1,13 @@
+mainClassName = 'c23.MontecarloPi.RunArgMcPiHost'
+
+// Only distribute:
+//  c23.MontecarloPi.RunArgMcPiHost*
+//  c23.MontecarloPi.McPi*
+//  c23.loaderObjects.*
+
+//sourceSets.main.groovy {
+//  setSrcDirs rootProject.sourceSets.main.groovy.srcDirs
+//  include '**/c23/MontecarloPi/RunArgMcPiHost*'
+//  include '**/c23/MontecarloPi/McPi*'
+//  include '**/c23/loaderObjects/'
+//}

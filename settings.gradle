@@ -1,0 +1,3 @@
+rootProject.name = 'ucape'
+include ':c23_McPiHostDist', ':c23_McPiNodeDist'
+include ':c24_HostProcessDist', ':c24_NodeProcessDist'

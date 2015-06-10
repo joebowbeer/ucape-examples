@@ -1,0 +1,11 @@
+mainClassName = 'c24.Distributed.hostNodeProcesses.HostProcess'
+
+//sourceSets.main.groovy {
+//  setSrcDirs rootProject.sourceSets.main.groovy.srcDirs
+//  include '**/c24/Distributed/'
+//  include '**/c24/SingleMachine/defs/'
+//}
+
+sourceSets.main.resources {
+  srcDirs += rootProject.sourceSets.concordance.resources.srcDirs
+}

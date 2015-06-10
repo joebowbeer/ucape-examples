@@ -1,0 +1,78 @@
+apply plugin: 'application'
+apply plugin: 'groovy'
+
+version = '1.0'
+
+repositories {
+  mavenCentral()
+  maven {
+    url 'http://repository.jboss.org/maven2/'
+  }
+}
+
+dependencies {
+  compile (
+    'org.codehaus.groovy:groovy-all:2.4.3',
+    'org.codehaus.gpars:gpars:1.2.1',
+    'org.codehaus.jcsp:jcsp:1.1-rc5'
+  )
+  testCompile 'junit:junit:4.10'
+}
+
+// Configure args property for run task, if provided.
+// You may define the property prior to executing tasks by passing a
+// "-PmainArgs=<STRING>" argument.
+run {
+  if (project.hasProperty('mainArgs')) {
+    args mainArgs.split()
+  }
+}
+
+test.useJUnit {
+  excludeCategories 'c17.IntegrationTests'
+}
+
+task testAll(type: Test) {
+  // listen to events in the test execution lifecycle
+  beforeTest { descriptor ->
+     logger.lifecycle("Running test: " + descriptor)
+  }
+}
+
+// Define default mainClass property for run task.
+// You may define the property prior to executing tasks by passing a
+// "-PmainClass=<QUALIFIED_CLASS_NAME>" argument.
+if (!hasProperty('mainClass')) {
+  ext.mainClass = 'c02.RunHelloWorld'
+}
+// NB Gradle Support defines mainClass property but application plugin expects mainClassName
+mainClassName = mainClass
+
+configurations {
+  concordance
+}
+
+sourceSets {
+  concordance.resources.srcDirs 'src/concordance/resources'
+}
+
+sourceSets.main.resources {
+  if (mainClassName.startsWith('c24.SingleMachine.mainScript.')) {
+    srcDirs += project.sourceSets.concordance.resources.srcDirs
+  }
+}
+
+subprojects {
+
+  apply plugin: 'application'
+
+  version = '1.0'
+
+  repositories {
+    mavenCentral()
+  }
+
+  dependencies {
+    compile rootProject
+  }
+}
